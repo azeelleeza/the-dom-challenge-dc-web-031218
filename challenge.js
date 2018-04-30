@@ -2,7 +2,6 @@ let timer;
 
  function change(){
   if (!timer){
-    console.log("!",timer)
     timer = setInterval(()=>{
       document.getElementById('counter').innerHTML++;
     }, 1000);
@@ -10,7 +9,7 @@ let timer;
     clearInterval(timer);
     timer = null;
   }
-};
+}
 
 change();
 
@@ -28,7 +27,7 @@ document.getElementById('<3').addEventListener('click',()=>{
 
 document.getElementById('pause').addEventListener('click',(function(){
   document.querySelectorAll('button:not(#pause):not(#submit)').forEach((b)=>b.disabled=true);
-  this.innerText = this.innerText === "pause" ? "resume" : "pause";  
+  this.innerText = this.innerText === "pause" ? "resume" : "pause";
   change();
 }));
 
