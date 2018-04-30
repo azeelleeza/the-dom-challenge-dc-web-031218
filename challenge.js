@@ -1,12 +1,18 @@
-const timer = setInterval(()=>{
-document.getElementById('counter').innerHTML++;
-}, 1000);
+let timer;
 
-const time = ()=>{
-  const timer = setInterval(()=>{
-  document.getElementById('counter').innerHTML++;
-}, 1000);
-return timer;};
+ function change(){
+  if (!timer){
+    console.log("!",timer)
+    timer = setInterval(()=>{
+      document.getElementById('counter').innerHTML++;
+    }, 1000);
+  } else{
+    clearInterval(timer);
+    timer = null;
+  }
+};
+
+change();
 
 document.getElementById('-').addEventListener('click',()=>{
   document.getElementById('counter').innerHTML--;
@@ -20,12 +26,11 @@ document.getElementById('<3').addEventListener('click',()=>{
   document.getElementsByClassName('likes')[0].innerHTML++;
 });
 
-document.getElementById('pause').addEventListener('click',(()=>{
+document.getElementById('pause').addEventListener('click',(function(){
   document.querySelectorAll('button:not(#pause):not(#submit)').forEach((b)=>b.disabled=true);
-  document.getElementById('pause').innerText === "pause" ? clearInterval(timer) : time() ;
-  console.log(this);
-  document.getElementById('pause').textContent = "resume";
-}).bind(this));
+  this.innerText = this.innerText === "pause" ? "resume" : "pause";  
+  change();
+}));
 
 document.getElementById('submit').addEventListener('click',(e)=>{
   e.preventDefault();
